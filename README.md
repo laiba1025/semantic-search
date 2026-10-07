@@ -42,7 +42,7 @@ User query ──► query embedding (GPU) ────────────�
 
 Measured on Google Colab. The GPU was a **Tesla T4** (15 GB, CUDA 13.0, PyTorch 2.11). The CPU baseline had **1 PyTorch thread** (1 physical core). Each value is the mean of 3 runs after warm-up. Raw data is in [`results/`](results/).
 
-### 1. CPU vs GPU (batch size 64)
+### CPU vs GPU (batch size 64)
 
 | Documents | CPU time (s) | GPU time (s) | CPU docs/s | GPU docs/s | Speedup |
 |---:|---:|---:|---:|---:|---:|
@@ -70,13 +70,13 @@ Throughput peaked at batch size 32. Batch sizes 16–64 are within about 5% of e
 - Tokenization runs on the single CPU core.
 - Larger batches carry more padding, because each batch is padded to its longest text.
 
-### 3. GPU memory
+### GPU memory
 
 - **Model weights:** about 87 MB.
 - **Peak memory:** 633 MB at batch 128, which is about 4% of the T4's 15 GB.
 - **`nvidia-smi`:** reported 1,177 MB in use at the end. That figure also includes PyTorch's caching allocator and the CUDA context.
 
-### 4. CPU/GPU equivalence
+### CPU/GPU equivalence
 
 | Metric | Value |
 |---|---:|
@@ -87,7 +87,7 @@ Throughput peaked at batch size 32. Batch sizes 16–64 are within about 5% of e
 
 The CPU and GPU embeddings are numerically equivalent. In a sample of 50 documents, the top-5 nearest neighbors were identical on both devices, so the GPU speeds up inference without changing the search results.
 
-### 5. Semantic search
+### Semantic search
 
 All 8 example queries returned relevant passages. After the first query, which took 94 ms because of one-time warm-up, each query embedding took about 6–11 ms on the GPU, and the FAISS search over 10,000 vectors took about 1 ms. Example:
 
