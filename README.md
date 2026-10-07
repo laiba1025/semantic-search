@@ -55,7 +55,7 @@ Measured on Google Colab. The GPU was a **Tesla T4** (15 GB, CUDA 13.0, PyTorch 
 
 The GPU was **27–35× faster** than the CPU baseline. The speedup *decreased* slightly as the dataset grew. The T4 was already close to its maximum throughput at 1,000 documents, because a small model like MiniLM saturates it quickly. CPU throughput rose with dataset size (37 → 50 docs/s). Part of that rise comes from the first 1k CPU run, which was unusually slow (36 s vs about 22 s for the other two).
 
-### 2. GPU batch size (10,000 documents)
+### GPU batch size (10,000 documents)
 
 | Batch size | GPU time (s) | GPU docs/s | Peak allocated (MB) | Peak reserved (MB) |
 |---:|---:|---:|---:|---:|
