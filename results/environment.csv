@@ -1,0 +1,8 @@
+,value
+gpu_name,Tesla T4
+gpu_total_mem_gb,14.56
+cuda_version,13.0
+torch_version,2.11.0+cu130
+cpu,x86_64
+cpu_threads,1
+python,3.13.15
